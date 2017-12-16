@@ -3,10 +3,10 @@
 	<head>
 		<title>Alluvione</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
 		<link rel="stylesheet" type="text/css" href="css/own_style.css">
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 		<script src="js/leaflet-hash.js"></script>
 		<script src="js/Autolinker.min.js"></script>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -20,14 +20,15 @@
 		}).fitBounds([[44.5537613274,10.3629143473],[44.9798611256,11.0274209037]]);
 		var hash = new L.Hash(map);
 		var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+		var additional_attrib2 = 'created w. <a href="http://emergency.copernicus.eu/mapping/list-of-components/EMSR260/" target ="_blank">EMS Copernicus</a> and <a href="https://github.com/emergenzeHack/ems_toolkit" target ="_blank">EMS Toolkit</a><br>';
 		var feature_group = new L.featureGroup([]);
 		var raster_group = new L.LayerGroup([]);
-		var basemap_0 = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', { 
-			attribution: additional_attrib + '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-		});	
-		basemap_0.addTo(map);	
+		var basemap_0 = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+			attribution: additional_attrib + additional_attrib2 + '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+		});
+		basemap_0.addTo(map);
 		var layerOrder=new Array();
-		function pop_EMSR260observedeventamerged(feature, layer) {					
+		function pop_EMSR260observedeventamerged(feature, layer) {
 			var popupContent = '<table><tr><th scope="row">event_type</th><td>' + Autolinker.link(String(feature.properties['event_type'])) + '</td></tr><tr><th scope="row">obj_desc</th><td>' + Autolinker.link(String(feature.properties['obj_desc'])) + '</td></tr><tr><th scope="row">det_method</th><td>' + Autolinker.link(String(feature.properties['det_method'])) + '</td></tr><tr><th scope="row">notation</th><td>' + Autolinker.link(String(feature.properties['notation'])) + '</td></tr><tr><th scope="row">dmg_src_id</th><td>' + Autolinker.link(String(feature.properties['dmg_src_id'])) + '</td></tr></table>';
 			layer.bindPopup(popupContent);
 		}
@@ -62,7 +63,7 @@
 			return this._div;
 		};
 		title.update = function () {
-			this._div.innerHTML = '<h2>Alluvione Nord Italia 12 Dicembre 2017</h2>dati from EMS Copericus elaborated with https://github.com/emergenzeHack/ems_toolkit'
+			this._div.innerHTML = '<h2>Estensione alluvione Nord Italia 12 Dicembre 2017</h2>data from EMS Copericus elaborated with https://github.com/emergenzeHack/ems_toolkit'
 		};
 		title.addTo(map);
 		var legend = L.control({position: 'bottomright'});
@@ -71,7 +72,7 @@
 			div.innerHTML = "<h3>Legend</h3><table></table>";
     		return div;
 		};
-		legend.addTo(map);
+		//legend.addTo(map);
 	var baseMaps = {
 		'OSM Black & White': basemap_0
 	};
